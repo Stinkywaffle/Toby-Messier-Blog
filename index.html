@@ -57,8 +57,8 @@
     .navbar-toggler { border-color: var(--border); }
     .navbar-toggler-icon { filter: invert(1); }
 
-    /* HERO */
-    .hero {
+    /* header */
+    .header {
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -66,7 +66,7 @@
       overflow: hidden;
       background: linear-gradient(135deg, var(--navy) 0%, #0d1b2e 60%, #0a1628 100%);
     }
-    .hero::before {
+    .header::before {
       content: '';
       position: absolute;
       width: 700px;
@@ -77,7 +77,7 @@
       right: -150px;
       pointer-events: none;
     }
-    .hero::after {
+    .header::after {
       content: '';
       position: absolute;
       width: 500px;
@@ -88,8 +88,8 @@
       left: -100px;
       pointer-events: none;
     }
-    .hero-content { position: relative; z-index: 2; }
-    .hero-eyebrow {
+    .header-content { position: relative; z-index: 2; }
+    .header-eyebrow {
       font-family: 'Rajdhani', sans-serif;
       font-size: 0.85rem;
       letter-spacing: 4px;
@@ -98,7 +98,7 @@
       font-weight: 600;
       margin-bottom: 1rem;
     }
-    .hero h1 {
+    .header h1 {
       font-family: 'Rajdhani', sans-serif;
       font-size: clamp(3rem, 8vw, 6rem);
       font-weight: 700;
@@ -107,13 +107,13 @@
       color: #fff;
       margin-bottom: 1.5rem;
     }
-    .hero h1 span {
+    .header h1 span {
       background: linear-gradient(90deg, var(--accent), var(--accent2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    .hero-sub {
+    .header-sub {
       font-size: 1.15rem;
       color: var(--muted);
       max-width: 520px;
@@ -272,14 +272,14 @@
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
+  <!-- header -->
+  <section class="header">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-lg-7 hero-content">
-          <div class="hero-eyebrow">Global Supply Chain Management</div>
+        <div class="col-lg-7 header-content">
+          <div class="header-eyebrow">Global Supply Chain Management</div>
           <h1>Toby<br/><span>Messier</span></h1>
-          <p class="hero-sub">
+          <p class="header-sub">
             BYU student, delivery associate, and former missionary. Passionate about logistics,
             people, and solving problems in dynamic environments.
           </p>
