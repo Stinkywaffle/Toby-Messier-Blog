@@ -1,0 +1,459 @@
+/* =============================================
+   blog-style.css — Amazon Driver Blog
+   Custom stylesheet — NO Bootstrap
+   ============================================= */
+
+/* 1. CSS RESET & BASE */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. ROOT VARIABLES */
+:root {
+  --amazon-orange: #FF9900;
+  --amazon-dark-orange: #e47911;
+  --amazon-blue: #146EB4;
+  --amazon-dark: #131921;
+  --amazon-darker: #0f1318;
+  --amazon-surface: #1a2332;
+  --amazon-surface2: #1f2d3d;
+  --amazon-border: rgba(255,153,0,0.15);
+  --text-primary: #f0f2f5;
+  --text-secondary: #9eaab8;
+  --text-muted: #6b7a8d;
+  --white: #ffffff;
+}
+
+/* 3. BODY & BACKGROUND */
+body {
+  font-family: 'Amazon Ember', 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--amazon-dark);
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* 4. TYPOGRAPHY */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Amazon Ember', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--white);
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--amazon-orange);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover { color: var(--amazon-dark-orange); }
+
+/* 5. NAVIGATION DIV */
+div#top-nav {
+  background-color: var(--amazon-darker);
+  border-bottom: 3px solid var(--amazon-orange);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+div#top-nav .nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 2rem;
+}
+
+div#top-nav .nav-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--amazon-orange);
+  letter-spacing: 1px;
+}
+
+div#top-nav .nav-logo span {
+  color: var(--white);
+}
+
+div#top-nav nav a {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-left: 1.5rem;
+  padding: 0.4rem 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+div#top-nav nav a:hover {
+  color: var(--amazon-orange);
+  border-bottom-color: var(--amazon-orange);
+}
+
+/* 6. HERO DIV */
+div#blog-hero {
+  background: linear-gradient(135deg, var(--amazon-darker) 0%, #0d1825 50%, #111d2b 100%);
+  border-bottom: 1px solid var(--amazon-border);
+  padding: 5rem 2rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+div#blog-hero::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,153,0,0.06) 0%, transparent 70%);
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+div#blog-hero .hero-tag {
+  display: inline-block;
+  background: rgba(255,153,0,0.15);
+  border: 1px solid rgba(255,153,0,0.3);
+  color: var(--amazon-orange);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 0.4rem 1.2rem;
+  border-radius: 50px;
+  margin-bottom: 1.5rem;
+}
+
+div#blog-hero h1 {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  color: var(--white);
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+div#blog-hero h1 span {
+  color: var(--amazon-orange);
+}
+
+div#blog-hero .hero-sub {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+div#blog-hero .hero-meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* 7. MAIN CONTENT DIV */
+div#main-content {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem;
+}
+
+/* 8. SECTION STYLING */
+.blog-section {
+  margin-bottom: 4rem;
+}
+
+.section-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amazon-orange);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.blog-section h2 {
+  font-size: 1.9rem;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.section-divider {
+  width: 40px;
+  height: 3px;
+  background: var(--amazon-orange);
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+
+/* 9. IMAGE STYLES */
+.blog-img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+  border: 1px solid var(--amazon-border);
+}
+
+.img-caption {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.img-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+/* 10. SCHEDULE TABLE */
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+.schedule-table th {
+  background: var(--amazon-orange);
+  color: var(--amazon-darker);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.schedule-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--amazon-border);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+
+.schedule-table tr:nth-child(even) td {
+  background: rgba(255,153,0,0.03);
+}
+
+.schedule-table tr:hover td {
+  background: rgba(255,153,0,0.06);
+}
+
+.schedule-table .time-col {
+  color: var(--amazon-orange);
+  font-weight: 700;
+  white-space: nowrap;
+  width: 110px;
+}
+
+/* 11. HOW A STOP WORKS — ORDERED LIST with NESTED UNORDERED */
+.stop-steps {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.stop-steps > li {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+}
+
+.stop-steps > li::marker {
+  color: var(--amazon-orange);
+  font-weight: 700;
+}
+
+.stop-steps ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-top: 0.4rem;
+}
+
+.stop-steps ul li {
+  color: var(--text-secondary);
+  font-weight: 400;
+  font-size: 0.93rem;
+  margin-bottom: 0.25rem;
+}
+
+.stop-steps ul li::marker {
+  color: var(--text-muted);
+}
+
+/* 12. ANECDOTE CARDS */
+.anecdote-card {
+  background: var(--amazon-surface);
+  border: 1px solid var(--amazon-border);
+  border-left: 4px solid var(--amazon-orange);
+  border-radius: 8px;
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+  transition: border-left-color 0.2s, transform 0.2s;
+}
+
+.anecdote-card:hover {
+  border-left-color: var(--amazon-blue);
+  transform: translateX(3px);
+}
+
+.anecdote-card .story-num {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amazon-orange);
+  margin-bottom: 0.4rem;
+}
+
+.anecdote-card h3 {
+  font-size: 1.2rem;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+
+/* 13. VIDEO WRAPPER */
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--amazon-border);
+  margin: 1.5rem 0;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* 14. TABLEAU WRAPPER */
+.tableau-wrapper {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--amazon-border);
+  margin: 1.5rem 0;
+  background: var(--amazon-surface);
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tableau-placeholder {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-muted);
+}
+
+.tableau-placeholder p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+/* 15. ANCHOR HIGHLIGHT */
+:target {
+  scroll-margin-top: 80px;
+}
+
+.anchor-section {
+  padding-top: 1rem;
+}
+
+/* 16. STAT BOXES */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.stat-box {
+  background: var(--amazon-surface);
+  border: 1px solid var(--amazon-border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.stat-box .stat-num {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--amazon-orange);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.stat-box .stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* 17. FOOTER */
+div#blog-footer {
+  background: var(--amazon-darker);
+  border-top: 3px solid var(--amazon-orange);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+div#blog-footer .footer-logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--amazon-orange);
+  letter-spacing: 1px;
+  margin-bottom: 0.75rem;
+}
+
+div#blog-footer .footer-links a {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: 0 0.75rem;
+  transition: color 0.2s;
+}
+
+div#blog-footer .footer-links a:hover {
+  color: var(--amazon-orange);
+}
+
+div#blog-footer p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 0.75rem;
+}
+
+/* 18. RESPONSIVE */
+@media (max-width: 640px) {
+  .img-row { grid-template-columns: 1fr; }
+  .stat-row { grid-template-columns: 1fr; }
+  div#top-nav .nav-inner { padding: 0.75rem 1rem; }
+  div#main-content { padding: 2rem 1rem 4rem; }
+  div#blog-hero { padding: 3.5rem 1rem 3rem; }
+}
