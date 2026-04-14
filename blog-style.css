@@ -103,8 +103,8 @@ div#top-nav nav a:hover {
   border-bottom-color: var(--amazon-orange);
 }
 
-/* 6. HERO DIV */
-div#blog-hero {
+/* 6. HEADER DIV */
+div#blog-header {
   background: linear-gradient(135deg, var(--amazon-darker) 0%, #0d1825 50%, #111d2b 100%);
   border-bottom: 1px solid var(--amazon-border);
   padding: 5rem 2rem 4rem;
@@ -113,7 +113,7 @@ div#blog-hero {
   overflow: hidden;
 }
 
-div#blog-hero::before {
+div#blog-header::before {
   content: '';
   position: absolute;
   width: 600px;
@@ -126,7 +126,7 @@ div#blog-hero::before {
   pointer-events: none;
 }
 
-div#blog-hero .hero-tag {
+div#blog-header .header-tag {
   display: inline-block;
   background: rgba(255,153,0,0.15);
   border: 1px solid rgba(255,153,0,0.3);
@@ -140,25 +140,25 @@ div#blog-hero .hero-tag {
   margin-bottom: 1.5rem;
 }
 
-div#blog-hero h1 {
+div#blog-header h1 {
   font-size: clamp(2.2rem, 5vw, 4rem);
   color: var(--white);
   margin-bottom: 1rem;
   position: relative;
 }
 
-div#blog-hero h1 span {
+div#blog-header h1 span {
   color: var(--amazon-orange);
 }
 
-div#blog-hero .hero-sub {
+div#blog-header .header-sub {
   font-size: 1.1rem;
   color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto 2rem;
 }
 
-div#blog-hero .hero-meta {
+div#blog-header .header-meta {
   font-size: 0.85rem;
   color: var(--text-muted);
   letter-spacing: 1px;
@@ -455,5 +455,5 @@ div#blog-footer p {
   .stat-row { grid-template-columns: 1fr; }
   div#top-nav .nav-inner { padding: 0.75rem 1rem; }
   div#main-content { padding: 2rem 1rem 4rem; }
-  div#blog-hero { padding: 3.5rem 1rem 3rem; }
+  div#blog-header { padding: 3.5rem 1rem 3rem; }
 }
