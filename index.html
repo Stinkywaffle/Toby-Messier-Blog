@@ -1,382 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Toby Messier</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-  <style>
-
-    /* Color Variables */
-    :root {
-      --navy: #0a0e1a;
-      --navy-mid: #111827;
-      --navy-light: #1e2a3a;
-      --accent: #4f9cf9;
-      --accent2: #a78bfa;
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --border: rgba(255,255,255,0.08);
-    }
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>Toby Messier</title>
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Google Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+        <!-- Bootstrap Icons -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Theme CSS -->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body class="d-flex flex-column h-100">
+        <main class="flex-shrink-0">
 
 
-    /* Body */
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background-color: var(--navy);
-      color: var(--text);
-      font-family: 'Lato', sans-serif;
-      margin: 0;
-    }
-
-
-    /* Navigation Bar */
-    .navbar {
-      background: rgba(10,14,26,0.95) !important;
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 2rem;
-    }
-
-    .navbar-brand {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: #fff !important;
-      letter-spacing: 2px;
-    }
-
-    .navbar-brand span { color: var(--accent); }
-
-    .nav-link {
-      color: var(--muted) !important;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      margin: 0 0.5rem;
-      transition: color 0.2s;
-    }
-
-    .nav-link:hover { color: var(--accent) !important; }
-
-    .navbar-toggler { border-color: var(--border); }
-
-    .navbar-toggler-icon { filter: invert(1); }
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Toby Messier</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
 
 
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      background: linear-gradient(135deg, var(--navy) 0%, #0d1b2e 60%, #0a1628 100%);
-    }
-
-    .hero-eyebrow {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .hero h1 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 700;
-      line-height: 1;
-      color: #fff;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 span {
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-sub {
-      font-size: 1.15rem;
-      color: var(--muted);
-      max-width: 520px;
-      line-height: 1.8;
-      margin-bottom: 2.5rem;
-    }
-
-    .btn-primary-custom {
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      border: none;
-      color: #fff;
-      padding: 0.8rem 2rem;
-      border-radius: 4px;
-      font-family: 'Rajdhani', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn-outline-custom {
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 0.8rem 2rem;
-      border-radius: 4px;
-      font-family: 'Rajdhani', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      text-decoration: none;
-      display: inline-block;
-      margin-left: 1rem;
-    }
-
-    .btn-outline-custom:hover { color: var(--accent); }
-
-
-    /* About Section */
-    .section { padding: 6rem 0; }
-
-    .section-label {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .section-title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 1.5rem;
-    }
-
-    .divider {
-      width: 50px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      border-radius: 2px;
-      margin-bottom: 2rem;
-    }
+            <!-- Header -->
+            <header class="py-5">
+                <div class="container px-5 pb-5">
+                    <div class="row gx-5 align-items-center">
+                        <div class="col-xxl-5">
+                            <div class="text-center text-xxl-start">
+                                <div class="badge bg-gradient-primary-to-secondary text-white mb-4">
+                                    <div class="text-uppercase">Logistics &middot; Leadership &middot; Supply Chain</div>
+                                </div>
+                                <div class="fs-3 fw-light text-muted">Hi, my name is</div>
+                                <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">Toby Messier</span></h1>
+                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
+                                    <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="resume.html">Resume</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-7">
+                            <div class="d-flex justify-content-center mt-5 mt-xxl-0">
+                                <div class="profile bg-gradient-primary-to-secondary">
+                                    <img class="profile-img" src="assets/profile.png" alt="Toby Messier" />
+                                    <div class="dots-1">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 191.6 1215.4" style="enable-background:new 0 0 191.6 1215.4" xml:space="preserve">
+                                            <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)">
+                                                <path d="M227.7,12788.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262C383.7,12801.6,289.7,12808.6,227.7,12788.6z"></path>
+                                                <path d="M1507.7,12788.6c-151-50-253-216-222-362c25-119,136-230,254-255c194-41,395,142,375,339c-11,105-90,213-190,262C1663.7,12801.6,1569.7,12808.6,1507.7,12788.6z"></path>
+                                                <path d="M227.7,11508.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262C383.7,11521.6,289.7,11528.6,227.7,11508.6z"></path>
+                                                <path d="M1507.7,11508.6c-151-50-253-216-222-362c25-119,136-230,254-255c194-41,395,142,375,339c-11,105-90,213-190,262C1663.7,11521.6,1569.7,11528.6,1507.7,11508.6z"></path>
+                                                <path d="M227.7,10228.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262C383.7,10241.6,289.7,10248.6,227.7,10228.6z"></path>
+                                                <path d="M1507.7,10228.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262C1663.7,10241.6,1569.7,10248.6,1507.7,10228.6z"></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="dots-2">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 191.6 1215.4" style="enable-background:new 0 0 191.6 1215.4" xml:space="preserve">
+                                            <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)">
+                                                <path d="M227.7,12788.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262C383.7,12801.6,289.7,12808.6,227.7,12788.6z"></path>
+                                                <path d="M1507.7,12788.6c-151-50-253-216-222-362c25-119,136-230,254-255c194-41,395,142,375,339c-11,105-90,213-190,262C1663.7,12801.6,1569.7,12808.6,1507.7,12788.6z"></path>
+                                                <path d="M227.7,11508.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262C383.7,11521.6,289.7,11528.6,227.7,11508.6z"></path>
+                                                <path d="M1507.7,11508.6c-151-50-253-216-222-362c25-119,136-230,254-255c194-41,395,142,375,339c-11,105-90,213-190,262C1663.7,11521.6,1569.7,11528.6,1507.7,11508.6z"></path>
+                                                <path d="M227.7,10228.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262C383.7,10241.6,289.7,10248.6,227.7,10228.6z"></path>
+                                                <path d="M1507.7,10228.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262C1663.7,10241.6,1569.7,10248.6,1507.7,10228.6z"></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="dots-3">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 191.6 1215.4" style="enable-background:new 0 0 191.6 1215.4" xml:space="preserve">
+                                            <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)">
+                                                <path d="M227.7,12788.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262C383.7,12801.6,289.7,12808.6,227.7,12788.6z"></path>
+                                                <path d="M1507.7,12788.6c-151-50-253-216-222-362c25-119,136-230,254-255c194-41,395,142,375,339c-11,105-90,213-190,262C1663.7,12801.6,1569.7,12808.6,1507.7,12788.6z"></path>
+                                                <path d="M227.7,11508.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262C383.7,11521.6,289.7,11528.6,227.7,11508.6z"></path>
+                                                <path d="M1507.7,11508.6c-151-50-253-216-222-362c25-119,136-230,254-255c194-41,395,142,375,339c-11,105-90,213-190,262C1663.7,11521.6,1569.7,11528.6,1507.7,11508.6z"></path>
+                                                <path d="M227.7,10228.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262C383.7,10241.6,289.7,10248.6,227.7,10228.6z"></path>
+                                                <path d="M1507.7,10228.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262C1663.7,10241.6,1569.7,10248.6,1507.7,10228.6z"></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="dots-4">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 191.6 1215.4" style="enable-background:new 0 0 191.6 1215.4" xml:space="preserve">
+                                            <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)">
+                                                <path d="M227.7,12788.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262C383.7,12801.6,289.7,12808.6,227.7,12788.6z"></path>
+                                                <path d="M1507.7,12788.6c-151-50-253-216-222-362c25-119,136-230,254-255c194-41,395,142,375,339c-11,105-90,213-190,262C1663.7,12801.6,1569.7,12808.6,1507.7,12788.6z"></path>
+                                                <path d="M227.7,11508.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262C383.7,11521.6,289.7,11528.6,227.7,11508.6z"></path>
+                                                <path d="M1507.7,11508.6c-151-50-253-216-222-362c25-119,136-230,254-255c194-41,395,142,375,339c-11,105-90,213-190,262C1663.7,11521.6,1569.7,11528.6,1507.7,11508.6z"></path>
+                                                <path d="M227.7,10228.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262C383.7,10241.6,289.7,10248.6,227.7,10228.6z"></path>
+                                                <path d="M1507.7,10228.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262C1663.7,10241.6,1569.7,10248.6,1507.7,10228.6z"></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
 
 
-    /* About Cards */
-    .card-dark {
-      background: var(--navy-light);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 2rem;
-      height: 100%;
-    }
-
-    .card-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 8px;
-      background: rgba(79,156,249,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.25rem;
-      color: var(--accent);
-      font-size: 1.2rem;
-    }
-
-    .card-dark h5 {
-      font-family: 'Rajdhani', sans-serif;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: #fff;
-      margin-bottom: 0.5rem;
-    }
-
-    .card-dark p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.7;
-      margin: 0;
-    }
+            <!-- About Section -->
+            <section class="bg-light py-5">
+                <div class="container px-5">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-xxl-8">
+                            <div class="text-center my-5">
+                                <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">About Me</span></h2>
+                                <p class="lead fw-light mb-4">BYU student, delivery associate, and former missionary.</p>
+                                <p class="text-muted">I'm studying Global Supply Chain Management at Brigham Young University, expected to graduate in June 2028. I recently returned from a two-year mission in Rancagua, Chile, where I developed professional-level Spanish fluency and strong leadership skills. I currently work as a Delivery Associate for ASLAR Logistics, an Amazon DSP partner in Sumner, WA. I'm passionate about logistics, people, and solving problems in dynamic environments.</p>
+                                <div class="d-flex justify-content-center fs-2 gap-4">
+                                    <a class="text-gradient" href="mailto:messier.toby.g@gmail.com"><i class="bi bi-envelope"></i></a>
+                                    <a class="text-gradient" href="https://linkedin.com/"><i class="bi bi-linkedin"></i></a>
+                                    <a class="text-gradient" href="https://github.com/Stinkywaffle"><i class="bi bi-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
 
-    /* Skills Pills */
-    .skill-pill {
-      display: inline-block;
-      background: rgba(79,156,249,0.1);
-      border: 1px solid rgba(79,156,249,0.2);
-      color: var(--accent);
-      padding: 0.4rem 1rem;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin: 0.3rem;
-    }
-
-    .skill-pill.lang {
-      background: rgba(167,139,250,0.1);
-      border-color: rgba(167,139,250,0.2);
-      color: var(--accent2);
-    }
+        </main>
 
 
-    /* Footer */
-    footer {
-      background: var(--navy-mid);
-      border-top: 1px solid var(--border);
-      padding: 3rem 0;
-    }
-
-    footer .social-link {
-      color: var(--muted);
-      font-size: 1.3rem;
-      margin: 0 0.75rem;
-      text-decoration: none;
-    }
-
-    footer .social-link:hover { color: var(--accent); }
-
-    footer p {
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin: 0;
-    }
-
-    .footer-name {
-      font-family: 'Rajdhani', sans-serif;
-      font-weight: 700;
-      font-size: 1.4rem;
-      color: #fff;
-      letter-spacing: 2px;
-    }
-
-    .footer-name span { color: var(--accent); }
-
-  </style>
-</head>
-<body>
+        <!-- Footer -->
+        <footer class="bg-white py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0">© 2025 Toby Messier</div></div>
+                    <div class="col-auto">
+                        <a class="small" href="mailto:messier.toby.g@gmail.com">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
 
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">TOBY<span>.</span></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="resume.html">Résumé</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Theme JS -->
+        <script src="js/scripts.js"></script>
 
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-7">
-          <div class="hero-eyebrow">Global Supply Chain Management</div>
-          <h1>Toby<br/><span>Messier</span></h1>
-          <p class="hero-sub">
-            BYU student, delivery associate, and former missionary. Passionate about logistics,
-            people, and solving problems in dynamic environments.
-          </p>
-          <a href="resume.html" class="btn-primary-custom">View Résumé</a>
-          <a href="#about" class="btn-outline-custom">About Me</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- About Section -->
-  <section class="section" id="about" style="background: var(--navy-mid);">
-    <div class="container">
-      <div class="section-label">Background</div>
-      <h2 class="section-title">About Me</h2>
-      <div class="divider"></div>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card-dark">
-            <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
-            <h5>Education</h5>
-            <p>Studying Global Supply Chain Management at Brigham Young University, expected graduation June 2028.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-dark">
-            <div class="card-icon"><i class="fas fa-globe-americas"></i></div>
-            <h5>Missionary Service</h5>
-            <p>Served a two-year mission in Rancagua, Chile — teaching, leading, and developing professional-level Spanish fluency.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-dark">
-            <div class="card-icon"><i class="fas fa-box"></i></div>
-            <h5>Logistics Experience</h5>
-            <p>Currently working as a Delivery Associate for Stave Delivery / ASLAR Logistics, an Amazon DSP partner in Sumner, WA.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Skills Section -->
-  <section class="section">
-    <div class="container">
-      <div class="section-label">Capabilities</div>
-      <h2 class="section-title">Skills & Languages</h2>
-      <div class="divider"></div>
-      <div class="mb-4">
-        <h6 style="color:var(--muted); text-transform:uppercase; letter-spacing:2px; font-size:0.75rem; margin-bottom:1rem;">Professional Skills</h6>
-        <span class="skill-pill">Teaching &amp; Training</span>
-        <span class="skill-pill">Interpersonal Communication</span>
-        <span class="skill-pill">Public Speaking</span>
-        <span class="skill-pill">Teamwork &amp; Collaboration</span>
-        <span class="skill-pill">Customer Service</span>
-        <span class="skill-pill">Patience</span>
-        <span class="skill-pill">Problem Solving</span>
-        <span class="skill-pill">Logistics Operations</span>
-      </div>
-      <div>
-        <h6 style="color:var(--muted); text-transform:uppercase; letter-spacing:2px; font-size:0.75rem; margin-bottom:1rem;">Languages</h6>
-        <span class="skill-pill lang">English — Native</span>
-        <span class="skill-pill lang">Spanish — Professional Working (B2 CEFR)</span>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Footer -->
-  <footer>
-    <div class="container text-center">
-      <div class="footer-name mb-3">TOBY<span>.</span></div>
-      <div class="mb-3">
-        <a href="mailto:messier.toby.g@gmail.com" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
-        <a href="https://github.com/" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com/" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      </div>
-      <p>© 2025 Toby Messier</p>
-    </div>
-  </footer>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    </body>
 </html>
