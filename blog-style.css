@@ -1,4 +1,16 @@
+/* =============================================
+   blog-style.css — Amazon Driver Blog
+   Custom stylesheet — NO Bootstrap
+   ============================================= */
 
+/* 1. RESET */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. ROOT VARIABLES */
 :root {
   --bg: #131921;
   --bg-section: #1a1f2e;
@@ -9,7 +21,7 @@
   --border: #2a2a2a;
 }
 
-/* Body */
+/* 3. BODY */
 body {
   background-color: var(--bg);
   color: var(--light-gray);
@@ -39,7 +51,7 @@ div#top-nav .nav-logo {
   font-family: Arial, sans-serif;
   font-size: 1.3rem;
   font-weight: bold;
-  color: var(--orange);
+  color: var(--white);
 }
 
 div#top-nav .nav-logo span {
@@ -83,7 +95,7 @@ div#blog-header h1 {
 }
 
 div#blog-header h1 span {
-  color: var(--orange);
+  color: var(--white);
 }
 
 div#blog-header .header-sub {
@@ -123,10 +135,7 @@ div#main-content {
 }
 
 .section-divider {
-  width: 35px;
-  height: 3px;
-  background-color: var(--orange);
-  margin-bottom: 1.25rem;
+  display: none;
 }
 
 .blog-section p {
@@ -201,11 +210,7 @@ div#main-content {
 
 /* 11. ANECDOTE CARDS */
 .anecdote-card {
-  background-color: var(--bg-section);
-  border-left: 3px solid var(--orange);
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1.25rem;
-  border-radius: 4px;
+  margin-bottom: 2rem;
 }
 
 .anecdote-card .story-num {
