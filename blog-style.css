@@ -152,17 +152,17 @@ body {
 
 
 /* Stories Section */
-.anecdote-card {
+.story-card {
   margin-bottom: 32px;
 }
 
-.anecdote-card h3 {
+.story-card h3 {
   font-family: Arial, sans-serif;
   color: white;
   margin-bottom: 8px;
 }
 
-.anecdote-card p {
+.story-card p {
   font-size: 16px;
   color: #cccccc;
 }
