@@ -112,10 +112,12 @@ body {
   list-style: none;
   padding: 0;
   margin: 16px 0;
+  border: none;
 }
 
 .schedule-list li {
   padding: 8px 0;
+  border: none;
 }
 
 .schedule-list li span.time {
