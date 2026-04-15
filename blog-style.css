@@ -1,153 +1,99 @@
-/* =============================================
-   blog-style.css — Amazon Driver Blog
-   Custom stylesheet — NO Bootstrap
-   ============================================= */
+/* Blog Stylesheet — Toby Messier */
 
-/* 1. RESET */
-*, *::before, *::after {
-  box-sizing: border-box;
+body {
+  background-color: #131921;
+  color: #cccccc;
+  font-family: Georgia, serif;
+  font-size: 17px;
+  line-height: 1.8;
   margin: 0;
   padding: 0;
 }
 
-/* 2. ROOT VARIABLES */
-:root {
-  --bg: #131921;
-  --bg-section: #1a1f2e;
-  --orange: #FF9900;
-  --white: #ffffff;
-  --light-gray: #cccccc;
-  --muted: #888888;
-  --border: #2a2a2a;
-}
-
-/* 3. BODY */
-body {
-  background-color: var(--bg);
-  color: var(--light-gray);
-  font-family: Georgia, serif;
-  font-size: 17px;
-  line-height: 1.8;
-}
-
-/* 4. NAVIGATION DIV */
-div#top-nav {
+/* NAVIGATION */
+#top-nav {
   background-color: #0f1318;
-  border-bottom: 2px solid var(--orange);
+  border-bottom: 2px solid #FF9900;
   padding: 1rem 2rem;
 }
 
-div#top-nav .nav-inner {
+.nav-inner {
   max-width: 800px;
   margin: 0 auto;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  align-items: center;
 }
 
-div#top-nav .nav-logo {
+.nav-logo {
+  color: white;
   font-family: Arial, sans-serif;
   font-size: 1.3rem;
   font-weight: bold;
-  color: var(--white);
 }
 
-div#top-nav .nav-logo span {
-  color: var(--white);
-}
-
-div#top-nav nav a {
-  color: var(--light-gray);
+#top-nav nav a {
+  color: #cccccc;
   font-family: Arial, sans-serif;
   font-size: 0.85rem;
   margin-left: 1.25rem;
   text-decoration: none;
 }
 
-div#top-nav nav a:hover {
-  color: var(--orange);
+#top-nav nav a:hover {
+  color: #FF9900;
 }
 
-/* 5. HEADER DIV */
-div#blog-header {
-  background-color: var(--bg-section);
-  border-bottom: 1px solid var(--border);
+/* HEADER */
+#blog-header {
+  background-color: #1a1f2e;
   padding: 3rem 2rem;
   text-align: center;
+  border-bottom: 1px solid #2a2a2a;
 }
 
-div#blog-header .header-tag {
-  font-family: Arial, sans-serif;
-  font-size: 0.8rem;
-  color: var(--orange);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 0.75rem;
-}
-
-div#blog-header h1 {
+#blog-header h1 {
   font-family: Arial, sans-serif;
   font-size: 2.2rem;
-  color: var(--white);
+  color: white;
   margin-bottom: 0.75rem;
 }
 
-div#blog-header h1 span {
-  color: var(--white);
-}
-
-div#blog-header .header-sub {
+#blog-header p {
+  color: #cccccc;
   font-size: 1rem;
-  color: var(--light-gray);
-  margin-bottom: 0.5rem;
 }
 
-div#blog-header .header-meta {
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-/* 6. MAIN CONTENT DIV */
-div#main-content {
+/* MAIN CONTENT */
+#main-content {
   max-width: 800px;
   margin: 0 auto;
   padding: 2.5rem 2rem 5rem;
 }
 
-/* 7. BLOG SECTIONS */
+/* SECTIONS */
 .blog-section {
   margin-bottom: 3.5rem;
   padding-bottom: 3.5rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.blog-section:last-child {
-  border-bottom: none;
+  border-bottom: 1px solid #2a2a2a;
 }
 
 .blog-section h2 {
   font-family: Arial, sans-serif;
   font-size: 1.5rem;
-  color: var(--white);
-  margin-bottom: 0.4rem;
-}
-
-.section-divider {
-  display: none;
+  color: white;
+  margin-bottom: 1rem;
 }
 
 .blog-section p {
   margin-bottom: 1rem;
 }
 
-/* 8. IMAGES */
+/* IMAGES */
 .blog-img {
   width: 100%;
   display: block;
   margin: 1.25rem 0;
-  border-radius: 4px;
 }
 
 .img-row {
@@ -157,7 +103,7 @@ div#main-content {
   margin: 1.25rem 0;
 }
 
-/* 9. SCHEDULE */
+/* SCHEDULE */
 .schedule-list {
   list-style: none;
   padding: 0;
@@ -166,49 +112,41 @@ div#main-content {
 
 .schedule-list li {
   padding: 0.5rem 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 0.97rem;
-}
-
-.schedule-list li:last-child {
-  border-bottom: none;
+  border-bottom: 1px solid #2a2a2a;
 }
 
 .schedule-list li span.time {
   font-family: Arial, sans-serif;
   font-weight: bold;
-  color: var(--orange);
+  color: #FF9900;
   margin-right: 0.75rem;
 }
 
-/* 10. ORDERED + UNORDERED LISTS */
+/* HOW STOPS WORK LIST */
 .stop-steps {
   padding-left: 1.5rem;
   margin: 1rem 0;
 }
 
 .stop-steps > li {
-  color: var(--white);
+  color: white;
   font-family: Arial, sans-serif;
   font-weight: bold;
   margin-bottom: 0.75rem;
 }
 
 .stop-steps ul {
-  list-style: disc;
   padding-left: 1.5rem;
   margin-top: 0.3rem;
 }
 
 .stop-steps ul li {
-  color: var(--light-gray);
-  font-family: Georgia, serif;
+  color: #cccccc;
   font-weight: normal;
   font-size: 0.95rem;
-  margin-bottom: 0.2rem;
 }
 
-/* 11. ANECDOTE CARDS */
+/* STORIES */
 .anecdote-card {
   margin-bottom: 2rem;
 }
@@ -216,32 +154,24 @@ div#main-content {
 .anecdote-card .story-num {
   font-family: Arial, sans-serif;
   font-size: 0.75rem;
-  color: var(--orange);
+  color: #FF9900;
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-bottom: 0.3rem;
 }
 
 .anecdote-card h3 {
   font-family: Arial, sans-serif;
-  font-size: 1.1rem;
-  color: var(--white);
-  margin-bottom: 0.6rem;
+  color: white;
+  margin-bottom: 0.5rem;
 }
 
-.anecdote-card p {
-  font-size: 0.97rem;
-  color: var(--light-gray);
-}
-
-/* 12. VIDEO */
+/* VIDEO */
 .video-wrapper {
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
   margin: 1.25rem 0;
-  border-radius: 4px;
 }
 
 .video-wrapper iframe {
@@ -253,66 +183,36 @@ div#main-content {
   border: 0;
 }
 
-/* 13. TABLEAU */
+/* TABLEAU */
 .tableau-wrapper {
   margin: 1.25rem 0;
   min-height: 400px;
+  background-color: #1a1f2e;
+  border: 1px solid #2a2a2a;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--bg-section);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-}
-
-.tableau-placeholder {
   text-align: center;
   padding: 2rem;
-  color: var(--muted);
-  font-family: Arial, sans-serif;
-  font-size: 0.9rem;
+  color: #888888;
 }
 
-/* 14. FOOTER DIV */
-div#blog-footer {
+/* FOOTER */
+#blog-footer {
   background-color: #0f1318;
-  border-top: 2px solid var(--orange);
+  border-top: 2px solid #FF9900;
   padding: 2rem;
   text-align: center;
   font-family: Arial, sans-serif;
   font-size: 0.85rem;
 }
 
-div#blog-footer .footer-logo {
-  color: var(--orange);
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin-bottom: 0.75rem;
-}
-
-div#blog-footer .footer-links a {
-  color: var(--light-gray);
+#blog-footer a {
+  color: #cccccc;
   margin: 0 0.6rem;
   text-decoration: none;
 }
 
-div#blog-footer .footer-links a:hover {
-  color: var(--orange);
-}
-
-div#blog-footer p {
-  color: var(--muted);
-  margin-top: 0.75rem;
-}
-
-/* 15. ANCHOR SCROLL OFFSET */
-:target {
-  scroll-margin-top: 70px;
-}
-
-/* 16. RESPONSIVE */
-@media (max-width: 600px) {
-  .img-row { grid-template-columns: 1fr; }
-  div#top-nav .nav-inner { flex-direction: column; align-items: flex-start; }
-  div#top-nav nav a { margin-left: 0; margin-right: 1rem; }
+#blog-footer a:hover {
+  color: #FF9900;
 }
