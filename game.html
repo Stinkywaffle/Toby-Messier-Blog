@@ -1,1 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dungeon</title>
+  <style>
 
+    body {
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.95rem;
+      margin: 0;
+      padding: 40px 30px;
+      min-height: 100vh;
+    }
+
+    #screen {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #stats {
+      margin-bottom: 20px;
+      line-height: 2;
+    }
+
+    #log {
+      height: 400px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    #log p { margin: 0; }
+
+    .dim    { color: #00ff00; }
+    .bright { color: #00ff00; }
+    .warn   { color: #00ff00; }
+    .danger { color: #00ff00; }
+    .gold   { color: #00ff00; }
+
+    #input-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    #input-row span { color: #00ff00; }
+
+    input {
+      background: #000;
+      color: #00ff00;
+      border: none;
+      border-bottom: 1px solid #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.95rem;
+      outline: none;
+      width: 200px;
+      padding: 2px 4px;
+    }
+
+    a {
+      display: block;
+      margin-top: 30px;
+      color: #007700;
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
+
+    a:hover { color: #00ff00; }
+
+  </style>
+</head>
+<body>
+<div id="screen">
+
+  <div id="stats">
+    HP: <span id="s-hp">100</span>/<span id="s-maxhp">100</span> &nbsp; DMG: <span id="s-dmg">15</span> &nbsp; GOLD: <span id="s-gold">0</span> &nbsp; ROOM: <span id="s-room">0</span>
+  </div>
+
+  <div id="log"></div>
+
+  <div id="input-row">
+    <span>&gt;</span>
+    <input id="inp" type="text" autocomplete="off"/>
+  </div>
+
+  <a href="blog.html">← back to blog</a>
+
+</div>
+
+<script>
+
+  let player = {};
+  let enemy = {};
+  let roomNumber = 0;
+  let gameState = '';
+  let shopOptions = [];
+
+
+  function initGame() {
+    player = { hp: 100, maxHp: 100, damage: 20, gold: 0 };
+    enemy = {};
+    roomNumber = 0;
+    gameState = 'start';
+    clearLog();
+    print('you stand before a dark dungeon entrance.', 'bright');
+    print('your sword is drawn.', 'dim');
+    ask('enter the dungeon? (yes/no)');
+  }
+
+
+  function handleInput() {
+    let raw = document.getElementById('inp').value.trim().toLowerCase();
+    document.getElementById('inp').value = '';
+    if (!raw) return;
+
+    print('> ' + raw, 'dim');
+
+    if (gameState === 'dead' || gameState === 'escaped') {
+      if (raw === 'yes' || raw === 'y') initGame();
+      else { print('farewell.', 'dim'); disableInput(); }
+      return;
+    }
+
+    let yes = raw === 'yes' || raw === 'y';
+    let no  = raw === 'no'  || raw === 'n';
+    let one = raw === '1';
+    let two = raw === '2';
+
+    if (gameState === 'shop') {
+      if (!one && !two) { ask('type 1 or 2.'); return; }
+      handleShopInput(one);
+      return;
+    }
+
+    if (!yes && !no) { ask('type yes or no.'); return; }
+
+    if (gameState === 'start') {
+      yes ? generateRoom() : (print('you walk away.', 'dim'), disableInput());
+
+    } else if (gameState === 'continue') {
+      yes ? generateRoom() : escape();
+
+    } else if (gameState === 'combat') {
+      yes ? combatRound() : (print('you cannot flee mid-combat.', 'warn'), ask('attack? (yes/no)'));
+
+    } else if (gameState === 'shop-continue') {
+      yes ? offerShop() : leaveShop();
+    }
+  }
+
+
+  function generateRoom() {
+    roomNumber++;
+    updateStats();
+    print('');
+    print('');
+    print('-- room ' + roomNumber + ' --', 'bright');
+    if (roomNumber % 5 === 0) print('something feels stronger here...', 'warn');
+
+    let roll = Math.random();
+    if (roll < 0.55) spawnEnemy();
+    else if (roll < 0.75 || roomNumber === 1) findGold();
+    else findShop();
+  }
+
+
+  function spawnEnemy() {
+    let tier = Math.floor(roomNumber / 5);
+
+    /* Every 5 rooms, only one of hp or damage increases - randomly chosen */
+    let hpBonus = 0;
+    let dmgBonus = 0;
+    if (tier > 0) {
+      if (Math.random() < 0.5) { hpBonus = tier * 15; }
+      else { dmgBonus = tier * 5; }
+    }
+
+    enemy = {
+      hp: 20 + hpBonus + Math.floor(Math.random() * 10),
+      damage: 8 + dmgBonus + Math.floor(Math.random() * 5),
+      name: getEnemyName(tier)
+    };
+    print('a ' + enemy.name + ' blocks your path.');
+    print('enemy hp: ' + enemy.hp + '  enemy damage: ' + enemy.damage);
+    let previewChance = Math.min(Math.floor((player.damage / enemy.hp) * 100), 95);
+    print('hit chance: ' + previewChance + '%');
+    gameState = 'combat';
+    ask('attack? (yes/no)');
+  }
+
+
+  function combatRound() {
+    let hitChance = Math.min(Math.floor((player.damage / enemy.hp) * 100), 95);
+    let roll = Math.floor(Math.random() * 100) + 1;
+
+    if (roll <= hitChance) {
+      let gold = roomNumber * 5;
+      player.gold += gold;
+      print('hit. the ' + enemy.name + ' is dead.');
+      print('it drops ' + gold + ' gold.');
+      updateStats();
+      gameState = 'continue';
+      ask('continue deeper? (yes/no)');
+    } else {
+      player.hp -= enemy.damage;
+      print('miss. the ' + enemy.name + ' hits you for ' + enemy.damage + '.');
+      print('hp: ' + Math.max(player.hp, 0) + '/' + player.maxHp);
+      updateStats();
+      if (player.hp <= 0) { gameOver(); return; }
+      ask('attack again? (yes/no)');
+    }
+  }
+
+
+  function findGold() {
+    let multiplier = Math.floor(Math.random() * 7) + 2;
+    let gold = roomNumber * 5 * multiplier;
+    player.gold += gold;
+    print('the room is empty. you find ' + gold + ' gold.');
+    updateStats();
+    gameState = 'continue';
+    ask('continue deeper? (yes/no)');
+  }
+
+
+  function findShop() {
+    print('a merchant sits in the shadows.', 'bright');
+    print('"wares for sale."', 'dim');
+    offerShop();
+  }
+
+
+  function offerShop() {
+    let base = roomNumber * 5;
+    let healCost  = base;
+    let dmgCost   = Math.ceil(base * 1.5);
+    let maxhpCost = Math.ceil(base * 1.75);
+
+    let all = [
+      { label: 'damage upgrade — +5% damage  (' + dmgCost + 'g)',   cost: dmgCost,   type: 'dmg' },
+      { label: 'max hp upgrade — +5% max hp  (' + maxhpCost + 'g)', cost: maxhpCost, type: 'maxhp' }
+    ];
+
+    if (player.hp < player.maxHp) {
+      all.push({ label: 'full heal — restore all hp  (' + healCost + 'g)', cost: healCost, type: 'hp' });
+    }
+
+    /* Shuffle and pick 2 */
+    all.sort(() => Math.random() - 0.5);
+    shopOptions = all.slice(0, 2);
+
+    print('');
+    print('your gold: ' + player.gold);
+    print('1.  ' + shopOptions[0].label);
+    print('2.  ' + shopOptions[1].label);
+    gameState = 'shop';
+    ask('buy which? (1/2)');
+  }
+
+
+  function handleShopInput(isOne) {
+    let choice = isOne ? shopOptions[0] : shopOptions[1];
+    if (player.gold < choice.cost) {
+      let broke = [
+        '"you call that gold? my grandmother carries more coin."',
+        '"come back when you can afford it, peasant."',
+        '"i\'ve seen goblins with more wealth than you."',
+        '"perhaps try finding some gold before wasting my time."',
+        '"bold of you to browse with empty pockets."'
+      ];
+      print(broke[Math.floor(Math.random() * broke.length)]);
+      gameState = 'continue';
+      ask('continue deeper? (yes/no)');
+    } else {
+      player.gold -= choice.cost;
+      if (choice.type === 'hp') {
+        player.hp = player.maxHp;
+        print('you are fully healed. hp: ' + player.hp + '/' + player.maxHp);
+      } else if (choice.type === 'dmg') {
+        player.damage = Math.ceil(player.damage * 1.05);
+        print('blade sharpened. damage: ' + player.damage);
+      } else {
+        let increase = Math.ceil(player.maxHp * 0.05);
+        player.maxHp += increase;
+        player.hp += increase;
+        print('you feel stronger. max hp: ' + player.maxHp);
+      }
+      updateStats();
+      gameState = 'shop-continue';
+      ask('browse again? (yes/no)');
+    }
+  }
+
+
+  function leaveShop() {
+    print('"safe travels." the merchant vanishes.', 'dim');
+    gameState = 'continue';
+    ask('continue deeper? (yes/no)');
+  }
+
+
+  function escape() {
+    print('');
+    print('you escape the dungeon.', 'bright');
+    print('rooms cleared: ' + roomNumber + '  gold: ' + player.gold, 'gold');
+    gameState = 'escaped';
+    ask('play again? (yes/no)');
+  }
+
+
+  function gameOver() {
+    player.hp = 0;
+    updateStats();
+    print('');
+    print('you died.', 'danger');
+    print('rooms survived: ' + roomNumber + '  gold: ' + player.gold, 'dim');
+    gameState = 'dead';
+    ask('play again? (yes/no)');
+  }
+
+
+  function getEnemyName(tier) {
+    let names = [
+      ['goblin', 'skeleton', 'giant rat'],
+      ['orc', 'zombie', 'dark elf'],
+      ['troll', 'wraith', 'stone golem'],
+      ['demon', 'vampire', 'shadow beast'],
+      ['dragon spawn', 'lich', 'void walker']
+    ];
+    let t = Math.min(tier, names.length - 1);
+    return names[t][Math.floor(Math.random() * names[t].length)];
+  }
+
+
+  function print(msg, cls) {
+    let log = document.getElementById('log');
+    let p = document.createElement('p');
+    p.className = cls || '';
+    p.textContent = msg;
+    log.appendChild(p);
+    log.scrollTop = log.scrollHeight;
+  }
+
+
+  function ask(q) { print(q, 'warn'); }
+
+
+  function clearLog() { document.getElementById('log').innerHTML = ''; }
+
+
+  function disableInput() {
+    document.getElementById('inp').disabled = true;
+  }
+
+
+  function updateStats() {
+    document.getElementById('s-hp').textContent = Math.max(player.hp, 0);
+    document.getElementById('s-maxhp').textContent = player.maxHp;
+    document.getElementById('s-dmg').textContent = player.damage;
+    document.getElementById('s-gold').textContent = player.gold;
+    document.getElementById('s-room').textContent = roomNumber;
+  }
+
+
+  document.getElementById('inp').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') handleInput();
+  });
+
+
+  initGame();
+
+</script>
+</body>
+</html>
